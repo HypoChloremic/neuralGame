@@ -5,12 +5,12 @@ class Player:
         # The constants declarations
         self.pos = PVector(0, 0)
         self.vel = PVector(0,0)
-        self.gravity = PVector(0,-1)
-        self.vZero = PVector(1,0)
         self.jump  = PVector(0,15)
         self.call  = 0
+        self.gravity = PVector(0,-1)
         self.collide = False
         self.spaceTimer = 0
+        self.color = random(0,150)
         
         # Dimensions of the player object, we havent done any sprites
         # yet here. 
@@ -19,7 +19,7 @@ class Player:
         
     
     def show(self):
-        fill(150)
+        fill(self.color)
         rect(self.pos.x, self.pos.y, self.playerWidth, self.playerHeight)
     
     

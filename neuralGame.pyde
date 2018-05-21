@@ -17,4 +17,17 @@ def draw():
     line(0,0,width,0)
 
     driver.move(Player)
+    driver.collision(Player)
     driver.show(Player)
+    
+    if driver.coll:
+        #print("hello")
+        refresh()
+        
+def refresh():
+        global Player, driver
+        Player = player.Player(width=width, height=height)
+        driver = objectDriver.ObjectDriver(player = Player, width=width, height=height)
+
+def keyPressed():
+    Player.callback()
