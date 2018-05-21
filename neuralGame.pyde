@@ -1,8 +1,10 @@
 import player
+import objectDriver
 
-width  = 500
+width  = 1000
 height = 500
 Player = player.Player(width=width, height=height)
+driver = objectDriver.ObjectDriver(player = Player, width=width, height=height)
 
 def setup():
     size(width, height)
@@ -10,12 +12,9 @@ def setup():
     
 
 def draw():
-    scale(-1,1)
+    translate(0,height/2)
     background(255,255,255)
     line(0,0,width,0)
-    Player.move()
-    Player.show()
-    
-    if keyPressed:
-        Player.callback()
-        print("hello")
+
+    driver.move(Player)
+    driver.show(Player)

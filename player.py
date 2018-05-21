@@ -5,13 +5,16 @@ class Player:
         # The constants declarations
         self.pos = PVector(0, 0)
         self.vel = PVector(0,0)
-        self.gravity = PVector(0,-5)
+        self.gravity = PVector(0,-1)
         self.vZero = PVector(1,0)
-        self.jump  = PVector(0,5)
+        self.jump  = PVector(0,15)
+        self.call  = 0
+        self.collide = False
+        self.spaceTimer = 0
         
         # Dimensions of the player object, we havent done any sprites
         # yet here. 
-        self.playerWidth  = -5
+        self.playerWidth  = 50
         self.playerHeight = 100
         
     
@@ -22,7 +25,6 @@ class Player:
     
     def move(self):
         self.pos.add(self.vel)
-        print(self.vel)
         if self.pos.y > 0:
             self.vel.y = self.vel.y + self.gravity.y
         elif self.pos.y < 0:
