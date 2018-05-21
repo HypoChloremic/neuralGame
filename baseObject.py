@@ -9,7 +9,7 @@ class BaseObject:
             self.objWidth  = 50
             self.objHeight = 50
         elif bool < 2:
-            self.objWidth  = 100
+            self.objWidth  = 10
             self.objHeight = 50
         else:
             self.objWidth  = 25

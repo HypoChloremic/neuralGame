@@ -3,7 +3,7 @@
 class Player:
     def __init__(self, width, height, baseSpeed=5):
         # The constants declarations
-        self.pos = PVector(0, 0)
+        self.pos = PVector(100, 0)
         self.vel = PVector(0,0)
         self.jump  = PVector(0,15)
         self.call  = 0

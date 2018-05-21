@@ -68,10 +68,10 @@ class ObjectDriver:
             plaVx = player.pos.x + player.playerWidth
             plaVy = player.pos.y + player.playerHeight
             
-            if player.pos.x < obj.pos.x and player.pos.y > obj.pos.y and player.pos.y <= obj.pos.y:
+            if player.pos.x < obj.pos.x and plaVx > obj.pos.x and player.pos.y > obj.pos.y and player.pos.y <= obj.pos.y:
                 self.coll = True
             
-            elif player.pos.x > obj.pos.x and player.pos.y < objVy:
+            elif player.pos.x > obj.pos.x and player.pos.x < objVx and player.pos.y < objVy:
                 self.coll = True
 
     def refresh(self, play):
