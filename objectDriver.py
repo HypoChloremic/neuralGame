@@ -59,13 +59,19 @@ class ObjectDriver:
     
     def collision(self, player): 
         for obj in self.obstacles:
-            objVertex = [(obj.pos.x, obj.pos.y), (obj.pos.x+obj.objWidth, obj.pos.y+obj.objHeight)]
-            plaVertex = [(player.pos.x, player.pos.y),(player.pos.x+player.playerWidth,player.pos.y+player.playerHeight)]
+            objVertex = [(obj.pos.x, obj.pos.y), ]
+            plaVertex = [(player.pos.x, player.pos.y),]
             
-            if plaVertex[0][0] < objVertex[0][0] and plaVertex[1][0] > objVertex[0][0] and plaVertex[0][1] <= objVertex[0][1]:
+            objVx = obj.pos.x + obj.objWidth
+            objVy = obj.pos.y + obj.objHeight
+            
+            plaVx = player.pos.x + player.playerWidth
+            plaVy = player.pos.y + player.playerHeight
+            
+            if player.pos.x < obj.pos.x and player.pos.y > obj.pos.y and player.pos.y <= obj.pos.y:
                 self.coll = True
             
-            elif plaVertex[0][0] > objVertex[0][0] and plaVertex[0][1] < objVertex[1][1]:
+            elif player.pos.x > obj.pos.x and player.pos.y < objVy:
                 self.coll = True
 
     def refresh(self, play):
