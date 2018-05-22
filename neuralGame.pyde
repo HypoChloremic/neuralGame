@@ -8,11 +8,10 @@ driver = objectDriver.ObjectDriver(player = Player, width=width, height=height)
 
 def setup():
     size(width, height)
-    scale(-1,1)
     
 
 def draw():
-    translate(0,height/2)
+    translate(0,height/1.5)
     background(255,255,255)
     line(0,0,width,0)
 
@@ -21,7 +20,6 @@ def draw():
     driver.show(Player)
     
     if driver.coll:
-        #print("hello")
         refresh()
         
 def refresh():

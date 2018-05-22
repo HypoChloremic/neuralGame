@@ -11,16 +11,24 @@ class ObjectDriver:
         self.width  = width
         self.height = height
         self.coll = False
+        self.score = 0
         
+
+
     def show(self,player):
         player.show()
-        
         for obs in self.obstacles:
             if obs:
                 obs.show()
     
+
+    def drawSprite(self):
+        pass
+                
     def move(self, player):
-        self.obstacleTimer += 1        
+        self.obstacleTimer += 1
+        self.score += 1
+        print(self.score)        
         
         if self.obstacleTimer > self.minObsInterval + random(50,100):
             self.addObstacle()
@@ -68,19 +76,8 @@ class ObjectDriver:
             plaVx = player.pos.x + player.playerWidth
             plaVy = player.pos.y + player.playerHeight
             
-            if player.pos.x < obj.pos.x and plaVx > obj.pos.x and player.pos.y > obj.pos.y and player.pos.y <= obj.pos.y:
+            if player.pos.x < obj.pos.x and plaVx > obj.pos.x and player.pos.y <= obj.pos.y and player.pos.y >= obj.pos.y:
                 self.coll = True
             
-            elif player.pos.x > obj.pos.x and player.pos.x < objVx and player.pos.y < objVy:
+            elif player.pos.x > obj.pos.x and player.pos.x < objVx and player.pos.y > objVy:
                 self.coll = True
-
-    def refresh(self, play):
-        play = player.Player(width=width, height=height)
-        
-            
-            
-            
-            
-            
-            
-            

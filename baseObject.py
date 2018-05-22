@@ -16,7 +16,7 @@ class BaseObject:
             self.objHeight = 20
 
         # The constants declarations
-        self.pos = PVector(width+self.objWidth, 0)
+        self.pos = PVector(width+self.objWidth, -self.objHeight)
         self.vel = PVector(-5,0)
         self.vZero = PVector(1,0)
         self.jump  = PVector(0,10)
