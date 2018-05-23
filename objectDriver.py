@@ -1,5 +1,9 @@
 import baseObject
 import player
+import config
+import neuralNetwork
+
+con = config.config()
 
 class ObjectDriver:
     def __init__(self, player, width, height):    
@@ -13,8 +17,12 @@ class ObjectDriver:
         self.coll = False
         self.score = 0
         
-
-
+        # assets
+        self.ground = loadImage(con.parent+"\\ground.png")
+        
+        # Neural network
+        self.NeuralNet = neuralNetwork.NeuralNetwork(1,3,1)
+        
     def show(self,player):
         player.show()
         for obs in self.obstacles:
@@ -24,11 +32,17 @@ class ObjectDriver:
 
     def drawSprite(self):
         pass
-                
+
+    def drive(self, fundInput):
+        out = self.NeuralNet.drive(fundInput)
+        #if out < 2:
+             
+        
+        
     def move(self, player):
         self.obstacleTimer += 1
-        self.score += 1
-        print(self.score)        
+        self.score += 1            
+        #print(self.score)        
         
         if self.obstacleTimer > self.minObsInterval + random(50,100):
             self.addObstacle()
@@ -39,11 +53,15 @@ class ObjectDriver:
             try:
                 if self.obstacles[obsInd]:
                     self.obstacles[obsInd].move()
-                
+                    out = self.NeuralNet.drive([self.obstacles[0].pos.x])
+                    if out < 2:
+                        player.callback()    
                     if self.obstacles[obsInd].pos.x+self.obstacles[obsInd].objWidth < 0:
                         del(self.obstacles[obsInd])
+                    
             except IndexError as e:
                 pass
+
 
         
     def addObstacle(self):
@@ -76,8 +94,11 @@ class ObjectDriver:
             plaVx = player.pos.x + player.playerWidth
             plaVy = player.pos.y + player.playerHeight
             
-            if player.pos.x < obj.pos.x and plaVx > obj.pos.x and player.pos.y <= obj.pos.y and player.pos.y >= obj.pos.y:
+            if player.pos.x < obj.pos.x and plaVx > obj.pos.x and player.pos.y <= obj.pos.y and plaVy >= obj.pos.y:
                 self.coll = True
-            
             elif player.pos.x > obj.pos.x and player.pos.x < objVx and player.pos.y > objVy:
                 self.coll = True
+            elif player.pos.x <= objVx and plaVx >= obj.pos.x  and player.pos.y <= obj.pos.y and plaVy >= obj.pos.y:
+                self.coll = True
+    
+    
