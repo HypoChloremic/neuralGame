@@ -51,5 +51,6 @@ class Player:
             self.vel.y = 0
             
     def callback(self):
-        self.vel.add(self.jump)
+        if self.pos.y == -self.playerHeight:
+            self.vel.add(self.jump)
         

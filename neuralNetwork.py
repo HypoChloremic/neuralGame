@@ -17,7 +17,7 @@ class NeuralNetwork:
         for i in range(sec):
             weights.append([])
             for j in range(fir):
-                weights[i].append(random(0,1)) 
+                weights[i].append(random(-1,1)) 
         return weights
     
 
@@ -31,8 +31,7 @@ class NeuralNetwork:
 
         dotted = []
         for i in range(len(temp)):
-          p = self.sigmoid(sum(temp[i]))
-          dotted.append(p)
+          dotted.append(self.sigmoid(sum(temp[i])))
         return dotted
 
 
@@ -45,4 +44,4 @@ class NeuralNetwork:
 
     def sigmoid(self, x):
         #return 1 / (1 + math.exp(-x))
-        return 2 / (1 + x)
+        return 1 / (1 + (x/100))

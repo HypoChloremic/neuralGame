@@ -59,7 +59,7 @@ class ObjectDriver:
                 pass
             try: 
                 out = self.NeuralNet.drive([self.obstacles[0].pos.x])
-                if out < 0.7:
+                if out[0] < 1:
                     player.callback()
             except IndexError:
                 pass
