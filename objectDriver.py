@@ -52,14 +52,16 @@ class ObjectDriver:
         for obsInd in range(len(self.obstacles)):
             try:
                 if self.obstacles[obsInd]:
-                    self.obstacles[obsInd].move()
-                    out = self.NeuralNet.drive([self.obstacles[0].pos.x])
-                    if out < 2:
-                        player.callback()    
+                    self.obstacles[obsInd].move()    
                     if self.obstacles[obsInd].pos.x+self.obstacles[obsInd].objWidth < 0:
                         del(self.obstacles[obsInd])
-                    
             except IndexError as e:
+                pass
+            try: 
+                out = self.NeuralNet.drive([self.obstacles[0].pos.x])
+                if out < 0.7:
+                    player.callback()
+            except IndexError:
                 pass
 
 
@@ -75,7 +77,6 @@ class ObjectDriver:
                 
                 elif self.obstacles[i] and i != len(self.obstacles)-1:
                     pass
-                
                 else:
                     self.obstacles.append(obj)
                     self.obstacleTimer = 0

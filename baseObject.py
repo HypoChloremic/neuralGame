@@ -6,7 +6,7 @@ class BaseObject:
         # Dimensions of the obj object, we havent done any sprites
         # yet here. 
         if bool < 1:
-            self.objWidth  = 50
+            self.objWidth  = 25
             self.objHeight = 50
         elif bool < 2:
             self.objWidth  = 10

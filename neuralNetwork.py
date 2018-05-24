@@ -23,25 +23,26 @@ class NeuralNetwork:
 
     def dotProduct(self, vector, matrix):
         #print(vector, matrix)
+        temp = []
         for i in range(len(vector)):
+            temp.append([])
             for j in range(len(matrix)):
-                #print(matrix[j][i], vector[i])
-                matrix[j][i] *= vector[i]
+              temp[-1].append(matrix[j][i]*vector[i])
 
-
-        dotted = matrix
-        #print("dotted", dotted)
-        for i in range(len(dotted)):
-          dotted[i] = self.sigmoid(sum(dotted[i]))
-        #print("result", dotted)
+        dotted = []
+        for i in range(len(temp)):
+          p = self.sigmoid(sum(temp[i]))
+          dotted.append(p)
         return dotted
+
 
     def drive(self, fundInput):
         print("fund", fundInput)
-        hidden = self.dotProduct(fundInput, self.weights[0][:])
-        output = self.dotProduct(hidden, self.weights[1][:])
+        hidden = self.dotProduct(fundInput, self.weights[0])
+        output = self.dotProduct(hidden, self.weights[1])
         print(output)
         return output
 
     def sigmoid(self, x):
-        return 1 / (1 + math.exp(-x))
+        #return 1 / (1 + math.exp(-x))
+        return 2 / (1 + x)
